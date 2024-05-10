@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CustomEntry.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:CustomEntry.Controls"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:CustomEntry.ViewModels"
+    x:DataType="vm:MainViewModel">
+
+    <ContentPage.Resources>
+        <Style
+            x:Key="InvalidEntryStyle"
+            TargetType="controls:CustomEntry">
+            <Setter Property="BorderColor" Value="Red" />
+        </Style>
+        <Style
+            x:Key="ValidEntryStyle"
+            TargetType="controls:CustomEntry">
+            <Setter Property="BorderColor" Value="Green" />
+        </Style>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout Margin="50">
+        <controls:CustomEntry Text="{Binding Email}"
+            CornerRadius="10"
+            Hint="email">
+            <controls:CustomEntry.Behaviors>
+                <toolkit:EmailValidationBehavior
+                    Flags="ValidateOnValueChanged"
+                    InvalidStyle="{StaticResource InvalidEntryStyle}"
+                    ValidStyle="{StaticResource ValidEntryStyle}" />
+            </controls:CustomEntry.Behaviors>
+        </controls:CustomEntry>
+        <Entry Text="dewdwe" />
+    </VerticalStackLayout>
+
+</ContentPage>
